@@ -19,11 +19,26 @@
 (defn extract-words [blob]
   (filter #(not (map? %)) blob))
 
+(defn get-title [url]
+  (:content (first (html/select
+                    (html-string-to-enlive (:body @(http/get url)))
+                    [:.WikiaPageHeader :> :h1]))))
+
+(defn extract-title [blob]
+  (last (clojure.string/split
+         (first blob) #":")))
+
+(defn song-map [url]
+  (let [lyrics (extract-words (get-lyrics-blob url))
+        title (extract-title (get-title url))]
+  {:title title :lyrics lyrics :url url}))
+
+
 (defn yuck []
-  (extract-words (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:Yuck!")))
+  (song-map "http://lyrics.wikia.com/2_Chainz:Yuck!"))
 
 (defn birthday []
-  (extract-words (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:Birthday_Song")))
+  (song-map "http://lyrics.wikia.com/2_Chainz:Birthday_Song"))
 
 (defn no-lie []
-  (extract-words (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:No_Lie")))
+  (song-map "http://lyrics.wikia.com/2_Chainz:No_Lie"))
