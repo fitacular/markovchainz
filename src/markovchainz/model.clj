@@ -4,8 +4,7 @@
     [markovchainz.songs :as songs]])
 
 (defn add [x]
-  (do
-    (redis/add-to-set (butlast x) (last x))))
+  (redis/add-to-set (butlast x) (last x)))
 
 (defn setup []
   (let [k 2]
