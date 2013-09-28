@@ -2,17 +2,12 @@
   [:require
     [clojure.string :as str]
     [markovchainz.redis :as redis]
+    [markovchainz.songs :as songs]
     [taoensso.carmine :as car :refer (wcar)]])
-
-; call lyrics fetchers
-; build k-th order markov model
-; add to redis
-
-(defn get-str [] "All gold in my amenities")
 
 (defn add [x]
   (redis/add-to-set (reverse (pop (reverse x))) (last x)))
 
-(defn -main []
+(defn setup []
   (let [k 2]
-    (doall (map add (partition (+ k 1) 1 (str/split (get-str) #"\s+"))))))
+    (doall (map add (partition (+ k 1) 1 (songs/song-stream))))))
