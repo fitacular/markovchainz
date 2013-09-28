@@ -1,7 +1,8 @@
 (ns markovchainz.scrape
   [:require
    [org.httpkit [client :as http]]
-   [net.cgrand.enlive-html :as html]]
+   [net.cgrand.enlive-html :as html]
+   [markovchainz [redis :as redis]]]
   [:import
    [java.io ByteArrayInputStream]])
 
@@ -42,3 +43,7 @@
 
 (defn no-lie []
   (song-map "http://lyrics.wikia.com/2_Chainz:No_Lie"))
+
+(defn save-songs
+  ([urls] (map #(redis/add-to-set "songs" (song-map %)) urls))
+ ([] (save-songs ["http://lyrics.wikia.com/2_Chainz:Yuck!" "http://lyrics.wikia.com/2_Chainz:Birthday_Song" "http://lyrics.wikia.com/2_Chainz:No_Lie"])))
