@@ -1,4 +1,4 @@
-(ns markovchainz.scrape
+(ns markovchainz.songs
   [:require
    [markovchainz [redis :as redis]]
    [clojure.string :as str]])
