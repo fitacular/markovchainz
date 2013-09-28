@@ -8,12 +8,6 @@
 (defn clear-redis []
   (map #(wcar* (car/del %)) (wcar* (car/keys "*"))))
 
-(defn set [key val]
-  (wcar* (car/set key val)))
-
-(defn get [key]
-  (wcar* (car/get key)))
-
 (defn add-to-set
   [set-name item]
   (wcar* (car/sadd set-name item)))
