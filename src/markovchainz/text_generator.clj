@@ -1,27 +1,17 @@
-(ns markovchainz.text-generator)
+(ns markovchainz.text-generator
+  [:require
+   [markovchainz.redis :as redis]
+   [clojure.string :as str]])
 
-; 1st order markov chain generator for preset toy model
+(defn next-word [prefix]
+  (rand-nth (redis/get-set prefix)))
 
-(defn get-map
-  []
-  {
-    "a" '(b),
-    "b" '(c),
-    "c" '(a b c),
-  })
-
-(defn chain
-  [model curr-seq n state]
-  (let
-    [new-state (str (rand-nth (get model state)))]
-    (if (pos? n)
-      (conj (chain model curr-seq (dec n) new-state) new-state)
-      curr-seq)))
-
-(defn -main
-  [& args]
-  (let 
-    [model (get-map)
-     state (str (rand-nth (rand-nth (keys model))))
-     len 20]
-    (println (conj (chain model nil len state) state))))
+(defn line
+  ([]
+     (line `[:markov-start :markov-start]))
+  ([line-so-far]
+     (let [k 2]
+       (if (= "markov-end" (last line-so-far))
+         (str/join " " (rest (rest (butlast line-so-far))))
+         (recur (conj line-so-far
+                      (next-word (take-last k line-so-far))))))))

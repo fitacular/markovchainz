@@ -1,13 +1,12 @@
 (ns markovchainz.model
   [:require
-    [clojure.string :as str]
     [markovchainz.redis :as redis]
-    [markovchainz.songs :as songs]
-    [taoensso.carmine :as car :refer (wcar)]])
+    [markovchainz.songs :as songs]])
 
 (defn add [x]
-  (redis/add-to-set (reverse (pop (reverse x))) (last x)))
+  (do
+    (redis/add-to-set (butlast x) (last x))))
 
 (defn setup []
   (let [k 2]
-    (doall (map add (partition (+ k 1) 1 (songs/song-stream))))))
+    (doall (map #(map add (partition (inc k) 1 %)) (songs/song-stream)))))
