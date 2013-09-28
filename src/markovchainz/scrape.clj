@@ -54,14 +54,12 @@
  "http://rapgenius.com/Yo-gotti-cases-lyrics"
  "http://rapgenius.com/Booba-cest-la-vie-lyrics"
  "http://rapgenius.com/Booba-cest-la-vie-english-version-lyrics"
- "http://rapgenius.com/2-chainz-chicken-marsala-lyrics"
  "http://rapgenius.com/J-cole-chris-tucker-lyrics"
  "http://rapgenius.com/2-chainz-countdown-lyrics"
  "http://rapgenius.com/Jadakiss-count-it-lyrics"
  "http://rapgenius.com/Jeezy-count-it-up-lyrics"
  "http://rapgenius.com/Nelly-country-ass-nigga-lyrics"
  "http://rapgenius.com/2-chainz-cowboy-lyrics"
- "http://rapgenius.com/2-chainz-crab-cakes-with-mango-salsa-lyrics"
  "http://rapgenius.com/2-chainz-crack-lyrics"
  "http://rapgenius.com/Gift-crustacean-lyrics"
  "http://rapgenius.com/Lil-wayne-days-and-days-lyrics"
@@ -88,7 +86,6 @@
  "http://rapgenius.com/2-chainz-fork-lyrics"
  "http://rapgenius.com/Meek-mill-freak-show-lyrics"
  "http://rapgenius.com/Future-freebandz-lyrics"
- "http://rapgenius.com/2-chainz-fried-chicken-lyrics"
  "http://rapgenius.com/Rick-ross-fuck-em-lyrics"
  "http://rapgenius.com/Kevin-mccall-fucking-problems-remix-lyrics"
  "http://rapgenius.com/A-ap-rocky-fuckin-problems-lyrics"
@@ -98,8 +95,6 @@
  "http://rapgenius.com/Planet-vi-fuck-you-too-lyrics"
  "http://rapgenius.com/2-chainz-fuk-da-roof-lyrics"
  "http://rapgenius.com/Psy-gangnam-style-diplo-remix-lyrics"
- "http://rapgenius.com/2-chainz-garlicky-green-beans-smoky-kale-greens-lyrics"
- "http://rapgenius.com/2-chainz-garlic-mashed-potatoes-lyrics"
  "http://rapgenius.com/2-chainz-gasolean-lyrics"
  "http://rapgenius.com/Gucci-mane-get-it-back-lyrics"
  "http://rapgenius.com/2-chainz-get-it-in-lyrics"
@@ -119,7 +114,6 @@
  "http://rapgenius.com/Juicy-j-having-sex-lyrics"
  "http://rapgenius.com/Bob-headband-lyrics"
  "http://rapgenius.com/Youngjuiceman-hella-bands-lyrics"
- "http://rapgenius.com/2-chainz-herb-crusted-lamb-rib-chops-beer-steamed-snow-crab-legs-lyrics"
  "http://rapgenius.com/Tyga-hijack-lyrics"
  "http://rapgenius.com/2-chainz-hip-hop-awards-uncut-cypher-lyrics"
  "http://rapgenius.com/Dj-scream-hood-rich-anthem-lyrics"
@@ -153,18 +147,15 @@
  "http://rapgenius.com/2-chainz-mainstream-ratchet-lyrics"
  "http://rapgenius.com/Young-fame-make-it-work-lyrics"
  "http://rapgenius.com/Sterling-simms-make-you-somebody-lyrics"
- "http://rapgenius.com/B-horowitz-making-yourself-a-ceo-lyrics"
  "http://rapgenius.com/French-montana-marble-floors-lyrics"
  "http://rapgenius.com/Game-mean-muggin-lyrics"
  "http://rapgenius.com/Kanye-west-mercy-lyrics"
  "http://rapgenius.com/Future-mind-blown-lyrics"
- "http://rapgenius.com/2-chainz-mixed-seafood-grill-kebabs-lyrics"
  "http://rapgenius.com/2-chainz-money-machine-lyrics"
  "http://rapgenius.com/Big-krit-money-on-the-floor-lyrics"
  "http://rapgenius.com/Big-sean-mula-remix-lyrics"
  "http://rapgenius.com/2-chainz-murder-lyrics"
  "http://rapgenius.com/Dj-drama-my-moment-lyrics"
- "http://rapgenius.com/Fall-out-boy-my-songs-know-what-you-did-in-the-dark-remix-lyrics"
  "http://rapgenius.com/R-kelly-my-story-lyrics"
  "http://rapgenius.com/Freddie-gibbs-neighborhood-hoez-lyrics"
  "http://rapgenius.com/2-chainz-netflix-lyrics"
@@ -197,7 +188,6 @@
  "http://rapgenius.com/Lil-freezy-rip-remix-lyrics"
  "http://rapgenius.com/Waka-flocka-flame-rooster-in-my-rari-remix-lyrics"
  "http://rapgenius.com/Wale-rotation-lyrics"
- "http://rapgenius.com/2-chainz-sauteed-asparagus-me-time-sauce-lyrics"
  "http://rapgenius.com/Ludacris-secret-song-lyrics"
  "http://rapgenius.com/Dj-scream-shinin-remix-lyrics"
  "http://rapgenius.com/Sean-kingston-shotta-luv-lyrics"
@@ -217,7 +207,6 @@
  "http://rapgenius.com/Ciara-sweat-lyrics"
  "http://rapgenius.com/Nore-tadow-lyrics"
  "http://rapgenius.com/Jason-derulo-talk-dirty-lyrics"
- "http://rapgenius.com/2-chainz-teriyaki-salmon-lyrics"
  "http://rapgenius.com/Raekwon-the-morning-lyrics"
  "http://rapgenius.com/Kanye-west-the-one-lyrics"
  "http://rapgenius.com/E-40-they-point-lyrics"
@@ -275,10 +264,7 @@
  "http://rapgenius.com/Xtreme-mcphilly-foreign-lyrics"
  "http://rapgenius.com/Wale-get-me-doe-lyrics"
  "http://rapgenius.com/Sammie-gettin-em-lyrics"
- "http://rapgenius.com/2-chainz-gettin-em-hi-grade-remix-lyrics"
  "http://rapgenius.com/2-chainz-goodnight-lyrics"
- "http://rapgenius.com/Jwtm-gun-range-lyrics"
- "http://rapgenius.com/Mccart-how-i-got-back-my-husband-lyrics"
  "http://rapgenius.com/Lil-flip-i-came-to-bring-the-pain-lyrics"
  "http://rapgenius.com/2-chainz-im-differen-lyrics"
  "http://rapgenius.com/Artie-sosa-im-different-freestyle-lyrics"
@@ -297,16 +283,12 @@
  "http://rapgenius.com/R-kelly-my-story-eftw-edition-lyrics"
  "http://rapgenius.com/Eric-benet-news-for-you-remix-lyrics"
  "http://rapgenius.com/2-chainz-no-lie-remix-lyrics"
- "http://rapgenius.com/2-chainz-pan-seared-sea-bass-with-heirloom-tomato-salsa-lyrics"
  "http://rapgenius.com/Bangladesh-phantom-lyrics"
  "http://rapgenius.com/Baby-w-problems-freestyle-lyrics"
  "http://rapgenius.com/Chingy-represent-lyrics"
- "http://rapgenius.com/2-chainz-shrimp-and-grits-lyrics"
- "http://rapgenius.com/2-chainz-shrimp-scampi-lyrics"
  "http://rapgenius.com/I-20-slum-lyrics"
  "http://rapgenius.com/2-chainz-supafly-lyrics"
  "http://rapgenius.com/Kirko-bangz-top-floor-lyrics"
- "http://rapgenius.com/2-chainz-watch-epic-online-free-lyrics"
  "http://rapgenius.com/Fabolous-when-i-feel-like-it-exclusive-lyrics"
  "http://rapgenius.com/Wiz-khalifa-work-hard-play-hard-all-day-everyday-lyrics"
  "http://rapgenius.com/Roxxan-xman15-lyrics"
@@ -342,9 +324,11 @@
          (first blob) #":")))
 
 (defn song-map [url]
-  (let [lyrics (extract-words (get-lyrics-blob url))
-        title (extract-title (get-title url))]
-  {:title title :lyrics lyrics :url url}))
+  (do
+    (prn url)
+    (let [lyrics (extract-words (get-lyrics-blob url))
+          title (extract-title (get-title url))]
+      {:title title :lyrics lyrics :url url})))
 
 (defn yuck []
   (song-map "http://rapgenius.com/2-chainz-yuck-lyrics"))
