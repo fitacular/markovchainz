@@ -20,4 +20,10 @@
   (filter #(not (map? %)) blob))
 
 (defn yuck []
-  (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:Yuck!"))
+  (extract-words (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:Yuck!")))
+
+(defn birthday []
+  (extract-words (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:Birthday_Song")))
+
+(defn no-lie []
+  (extract-words (get-lyrics-blob "http://lyrics.wikia.com/2_Chainz:No_Lie")))
