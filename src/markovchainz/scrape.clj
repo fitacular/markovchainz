@@ -34,7 +34,6 @@
         title (extract-title (get-title url))]
   {:title title :lyrics lyrics :url url}))
 
-
 (defn yuck []
   (song-map "http://lyrics.wikia.com/2_Chainz:Yuck!"))
 
@@ -46,4 +45,4 @@
 
 (defn save-songs
   ([urls] (map #(redis/add-to-set "songs" (song-map %)) urls))
- ([] (save-songs ["http://lyrics.wikia.com/2_Chainz:Yuck!" "http://lyrics.wikia.com/2_Chainz:Birthday_Song" "http://lyrics.wikia.com/2_Chainz:No_Lie"])))
+  ([] (save-songs ["http://lyrics.wikia.com/2_Chainz:Yuck!" "http://lyrics.wikia.com/2_Chainz:Birthday_Song" "http://lyrics.wikia.com/2_Chainz:No_Lie"])))
