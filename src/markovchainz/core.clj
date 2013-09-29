@@ -29,13 +29,17 @@
   body {
     padding: 0;
     margin: 0;
+    font-family: Helvetica Neue;
   }
   #h {
-    font-family: Helvetica;
+    padding: 0 15px 0;
   }
   #c {
-    background: url(https://farm9.staticflickr.com/8460/7943814380_0846ee8feb_z.jpg);
-    background-size: 120%;
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding: 5%;
   }
   #f {
@@ -63,13 +67,16 @@
     margin: 3px;
   }
   .permalink {
-
+    padding: 0 15px 15px;
   }
   .error {
 
   }
   </style>
-  <div id='h'><h1>Markov 2 Chainz</h1></div>
+  <div id='h'>
+  <h1>Markov 2 Chainz</h1>
+  <p>TBD</p>
+  </div>
   ")
 
 (defn get-footer []
@@ -80,7 +87,7 @@
     "<p class='permalink'><a href='.'>Generate new</a> | <a href='" id "'>Permalink</a></p>"
     (let [perma (redis/rget id)]
       (if-not (nil? perma)
-        (str "<div id='c' style='background: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
+        (str "<div id='c' style='background-image: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
         "<p class='error'>Not found</p>"))
     (get-footer)))
 
@@ -89,7 +96,7 @@
     (str
       (get-header)
       "<p class='permalink'><a href=''>Regenerate</a> | <a href='" (:key body) "'>Permalink</a></p>"
-      "<div id='c' style='background: url(" (:image body) ")'><p class='lyrics'><span>" (str/replace (:body body) #"\n" "</span><br/><span>\n") "</span></p></div>"
+      "<div id='c' style='background-image: url(" (:image body) ")'><p class='lyrics'><span>" (str/replace (:body body) #"\n" "</span><br/><span>\n") "</span></p></div>"
       (get-footer))
     ))
 
