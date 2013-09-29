@@ -17,7 +17,8 @@
                                        :tags keyword
                                        :license "1,2,4,5"
                                        :format "json"
-                                       :per_page 10}})]
+                                       :per_page 20
+                                       :page (rand-nth (range 1 10))}})]
     (json/parse-string
      (string/replace (:body @resp) #"^jsonFlickrApi\(|\)$" "")
      true)))
