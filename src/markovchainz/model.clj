@@ -8,4 +8,4 @@
 
 (defn setup []
   (let [k 2]
-    (doall (map #(map add (partition (inc k) 1 %)) (songs/song-stream)))))
+    (doall (pmap #(map add (partition (inc k) 1 %)) (songs/song-stream)))))

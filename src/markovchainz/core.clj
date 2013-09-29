@@ -1,23 +1,15 @@
 (ns markovchainz.core
   (:require
     [clojure.string :as str]
-    [markovchainz.text-generator :as text-generator])
+    [markovchainz.text-generator :as gen])
   (:use ring.adapter.jetty)
   (:use ring.middleware.reload)
   (:use ring.middleware.stacktrace))
 
-(defn get-stanza []
-  (let [lines 5]
-    (str (str/join "\n" (repeatedly lines #(text-generator/line))) "\n")))
-
-(defn get-body []
-  (let [stanzas 3]
-    (str (str/join "\n" (repeatedly stanzas #(get-stanza))) "\n")))
-
 (defn handler [req]
   {:status  200
    :headers {"Content-Type" "text/plain"}
-   :body    (get-body)})
+   :body    (:body (gen/get-body))})
 
 (def app
   (-> #'handler

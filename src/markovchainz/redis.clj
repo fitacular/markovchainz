@@ -15,3 +15,9 @@
 (defn get-set
   [set-name]
   (wcar* (car/smembers set-name)))
+
+(defn key? [k]
+  (seq (wcar* (car/keys k))))
+
+(defn rset [k v]
+  (wcar* (car/set k v)))
