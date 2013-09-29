@@ -19,7 +19,7 @@
     (redis/rset key response)
     response))
 
-(defn get-header [image-url]
+(defn get-header []
   (str "<!DOCTYPE html><html>
   <style type='text/css'>
   html {
@@ -32,7 +32,7 @@
     font-family: Helvetica Neue;
   }
   #h {
-    padding: 0 15px 0;
+    padding: 12px 15px 0;
   }
   #c {
     background: no-repeat center center fixed;
@@ -41,9 +41,6 @@
     -o-background-size: cover;
     background-size: cover;
     padding: 5%;
-  }
-  #f {
-
   }
   .lyrics {
     font-variant: small-caps;
@@ -69,36 +66,40 @@
   .permalink {
     padding: 0 15px 15px;
   }
-  .error {
-
+  td p {
+    margin: 0;
+    line-height: 150%;
   }
   </style>
+  <title>Markov 2 Chainz</title>
   <div id='h'>
-  <h1>Markov 2 Chainz</h1>
-  <p><a href='http://en.wikipedia.org/wiki/Markov_chain'>Generated</a> rap lyrics using songs selected from Mr. Chainz's extensive repertoire.</p>
-  <p>Built using <a href='" image-url "'>Flickr</a>, Rapgenius, Redis, Clojure and <a href='http://clojurecup.com/app.html?app=2chainz'>more</a>.<p>
-  <p>A Clojure Cup Entry by <a href='https://twitter.com/dsri'>@dsri</a> and <a href='http://twitter.com/skiaec04'>@skiaec04</a></p>
+  <table border='0'>
+  <tr><td style='padding-right: 25px;'><h1>Markov 2 Chainz</h1></td>
+  <td><p>Lyrics are generated dynamically using a <a href='https://en.wikipedia.org/wiki/Markov_chain'>Markov chain</a> from a corpus of songs from <a href='https://twitter.com/2chainz'>Mr. Chainz</a>'s extensive repertoire.</p>
+  <p>Built with Clojure, Redis, Flickr, Rapgenius, and <a href='http://clojurecup.com/app.html?app=2chainz'>more</a>.<p>
+  <p>A Clojure Cup entry by <a href='https://twitter.com/dsri'>@dsri</a> and <a href='https://twitter.com/skiaec04'>@skiaec04</a>.</p>
+  </td></tr></table>
   </div>
   "))
 
 (defn get-footer []
-  "</html>")
+  "</html>\n\n")
 
 (defn get-permalink [id]
   (let [perma (redis/rget id)]
-    (str (get-header (:image perma))
-         "<p class='permalink'><a href='.'>Generate new</a> | <a href='" id "'>Permalink</a></p>"
-
-         (if-not (nil? perma)
-           (str "<div id='c' style='background-image: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
-           "<p class='error'>Not found</p>"))
-    (get-footer)))
+    (str
+      (get-header)
+      "<p class='permalink'><a href='.'>Generate new lyrics</a> | <a href='" id "'>Permalink to these lyrics</a> | <a href='" (:image perma) "'>Flickr image source</a></p>"
+      (if-not (nil? perma)
+        (str "<div id='c' style='background-image: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
+        "<h2>Not found</h2>")
+      (get-footer))))
 
 (defn get-lyrics []
   (let [body (get-body)]
     (str
-      (get-header (:image body))
-      "<p class='permalink'><a href=''>Regenerate</a> | <a href='" (:key body) "'>Permalink</a></p>"
+      (get-header)
+      "<p class='permalink'><a href=''>Generate new lyrics</a> | <a href='" (:key body) "'>Permalink to these lyrics</a> | <a href='" (:image body) "'>Flickr image source</a></p>"
       "<div id='c' style='background-image: url(" (:image body) ")'><p class='lyrics'><span>" (str/replace (:body body) #"\n" "</span><br/><span>\n") "</span></p></div>"
       (get-footer))
     ))
@@ -109,7 +110,7 @@
   (GET "/:id" [id]
     (get-permalink id))
   (ANY "*" []
-    {:status 404, :body "<html><h1>Not found</h1></html>"}))
+    {:status 404, :body "<!DOCTYPE html>\n<html><h2>Not found</h2></html>\n"}))
 
 (def app
   (-> (var handler)
