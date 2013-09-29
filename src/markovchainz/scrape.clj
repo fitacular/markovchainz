@@ -307,8 +307,11 @@
 (defn extract-words [blob]
   (let [text (filter #(not (map? %)) (flatten-annotated-lyrics blob))
         compacted-text (filter identity text)
-        trimmed (map str/trim compacted-text)]
-    (filter not-empty trimmed)))
+        trimmed (map str/trim compacted-text)
+        lines (filter not-empty trimmed)
+        good-lines (filter #(not (re-find #"[\[\]{}]" %)) lines)]
+    good-lines))
+
 
 (defn get-title [url]
   (:content (first (html/select
