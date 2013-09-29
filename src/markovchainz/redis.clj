@@ -24,3 +24,13 @@
 
 (defn rget [k]
   (wcar* (car/get k)))
+
+(defn rand-str [n]
+  (let [chars (map char (concat (range 48 58) (range 97 123)))]
+    (clojure.string/join (take n (repeatedly #(rand-nth chars))))))
+
+(defn get-random-key []
+  (let [key (rand-str 6)]
+   (if-not (redis/key? key)
+     key
+     (recur))))

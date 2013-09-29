@@ -9,4 +9,5 @@
                  [compojure "1.1.5"]
                  [ring "1.2.0"]
                  [http-kit "2.1.10"]
-                 [enlive "1.1.4"]])
+                 [enlive "1.1.4"]
+                 [cheshire "5.2.0"]])

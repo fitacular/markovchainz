@@ -3,11 +3,21 @@
     [clojure.string :as str]
     [markovchainz.text-generator :as gen]
     [markovchainz.redis :as redis]
+    [markovchainz.flickr :as flickr]
     [compojure.route :as route])
   (:use compojure.core)
   (:use ring.adapter.jetty)
   (:use ring.middleware.reload)
   (:use ring.middleware.stacktrace))
+
+
+(defn get-body []
+  (let [body-text (gen/body)
+        image (flickr/get-image)
+        key (redis/get-random-key)
+        response {:body body-text :image image :key key}]
+    (redis/rset key response)
+    response))
 
 (defn get-header []
   "<!DOCTYPE html><html>")
@@ -19,12 +29,12 @@
   (str (get-header)
     (let [perma (redis/rget id)]
       (if-not (nil? perma)
-        (str "<p style='font-variant: small-caps; font-size: 24pt'>" (str/replace perma #"\n" "<br/>\n") "</p>")
+        (str "<p style='font-variant: small-caps; font-size: 24pt'>" (str/replace (:body perma) #"\n" "<br/>\n") "</p>")
         "<p>Not found</p>"))
     (get-footer)))
 
 (defn get-lyrics []
-  (let [body (gen/get-body)]
+  (let [body (get-body)]
     (str
       (get-header)
       "<p style='font-variant: small-caps; font-size: 24pt'>" (str/replace (:body body) #"\n" "<br/>\n") "</p>"
