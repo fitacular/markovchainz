@@ -33,4 +33,5 @@
 
 
 (defn get-image []
-  (rand-nth (get-images)))
+  (try (rand-nth (get-images))
+       (catch Exception e "http://farm4.staticflickr.com/3773/9904361105_3302581b52.jpg")))

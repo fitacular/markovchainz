@@ -35,7 +35,7 @@
     padding: 0 15px 0;
   }
   #c {
-    background: no-repeat center center fixed; 
+    background: no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -75,7 +75,9 @@
   </style>
   <div id='h'>
   <h1>Markov 2 Chainz</h1>
-  <p>TBD</p>
+  <p><a href='http://en.wikipedia.org/wiki/Markov_chain'>Generated</a> rap lyrics using songs selected from Mr. Chainz's extensive repertoire.</p>
+  <p>Built using Flickr, Rapgenius, Redis, Clojure and <a href='http://clojurecup.com/app.html?app=2chainz'>more</a>.<p>
+  <p>A Clojure Cup Entry by <a href='https://twitter.com/dsri'>@dsri</a> and <a href='http://twitter.com/skiaec04'>@skiaec04</a></p>
   </div>
   ")
 
