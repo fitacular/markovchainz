@@ -19,8 +19,8 @@
     (redis/rset key response)
     response))
 
-(defn get-header []
-  "<!DOCTYPE html><html>
+(defn get-header [image-url]
+  (str "<!DOCTYPE html><html>
   <style type='text/css'>
   html {
     overflow-y:scroll;
@@ -76,27 +76,28 @@
   <div id='h'>
   <h1>Markov 2 Chainz</h1>
   <p><a href='http://en.wikipedia.org/wiki/Markov_chain'>Generated</a> rap lyrics using songs selected from Mr. Chainz's extensive repertoire.</p>
-  <p>Built using Flickr, Rapgenius, Redis, Clojure and <a href='http://clojurecup.com/app.html?app=2chainz'>more</a>.<p>
+  <p>Built using <a href='" image-url "'>Flickr</a>, Rapgenius, Redis, Clojure and <a href='http://clojurecup.com/app.html?app=2chainz'>more</a>.<p>
   <p>A Clojure Cup Entry by <a href='https://twitter.com/dsri'>@dsri</a> and <a href='http://twitter.com/skiaec04'>@skiaec04</a></p>
   </div>
-  ")
+  "))
 
 (defn get-footer []
   "</html>")
 
 (defn get-permalink [id]
-  (str (get-header)
-    "<p class='permalink'><a href='.'>Generate new</a> | <a href='" id "'>Permalink</a></p>"
-    (let [perma (redis/rget id)]
-      (if-not (nil? perma)
-        (str "<div id='c' style='background-image: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
-        "<p class='error'>Not found</p>"))
+  (let [perma (redis/rget id)]
+    (str (get-header (:image perma))
+         "<p class='permalink'><a href='.'>Generate new</a> | <a href='" id "'>Permalink</a></p>"
+
+         (if-not (nil? perma)
+           (str "<div id='c' style='background-image: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
+           "<p class='error'>Not found</p>"))
     (get-footer)))
 
 (defn get-lyrics []
   (let [body (get-body)]
     (str
-      (get-header)
+      (get-header (:image body))
       "<p class='permalink'><a href=''>Regenerate</a> | <a href='" (:key body) "'>Permalink</a></p>"
       "<div id='c' style='background-image: url(" (:image body) ")'><p class='lyrics'><span>" (str/replace (:body body) #"\n" "</span><br/><span>\n") "</span></p></div>"
       (get-footer))
