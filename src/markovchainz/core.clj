@@ -20,25 +20,65 @@
     response))
 
 (defn get-header []
-  "<!DOCTYPE html><html>")
+  "<!DOCTYPE html><html>
+  <style type='text/css'>
+  html {
+    overflow-y:scroll;
+    overflow:-moz-scrollbars-vertical;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  #h {
+    font-family: Helvetica;
+  }
+  #c {
+    background: url(https://farm9.staticflickr.com/8460/7943814380_0846ee8feb_z.jpg);
+    background-size: 120%;
+    padding: 5%;
+  }
+  #f {
+
+  }
+  .lyrics {
+    font-variant: small-caps;
+    font-size: 20pt;
+    font-family: Georgia;
+  }
+  .lyrics span {
+    background: #eee;
+    color: #000;
+    margin: 3px;
+  }
+  .permalink {
+
+  }
+  .error {
+
+  }
+  </style>
+  <div id='h'><h1>Markov 2 Chainz</h1></div>
+  ")
 
 (defn get-footer []
   "</html>")
 
 (defn get-permalink [id]
   (str (get-header)
+    "<p class='permalink'><a href='.'>Generate new</a> | <a href='" id "'>Permalink</a></p>"
     (let [perma (redis/rget id)]
       (if-not (nil? perma)
-        (str "<p style='font-variant: small-caps; font-size: 24pt'>" (str/replace (:body perma) #"\n" "<br/>\n") "</p>")
-        "<p>Not found</p>"))
+        (str "<div id='c' style='background: url(" (:image perma) ")'><p class='lyrics'><span>" (str/replace (:body perma) #"\n" "</span><br/><span>\n") "</span></p></div>")
+        "<p class='error'>Not found</p>"))
     (get-footer)))
 
 (defn get-lyrics []
   (let [body (get-body)]
     (str
       (get-header)
-      "<p style='font-variant: small-caps; font-size: 24pt'>" (str/replace (:body body) #"\n" "<br/>\n") "</p>"
-      "<p><a href='" (:key body) "'>Permalink</a></p>"
+      "<p class='permalink'><a href=''>Regenerate</a> | <a href='" (:key body) "'>Permalink</a></p>"
+      "<div id='c' style='background: url(" (:image body) ")'><p class='lyrics'><span>" (str/replace (:body body) #"\n" "</span><br/><span>\n") "</span></p></div>"
       (get-footer))
     ))
 

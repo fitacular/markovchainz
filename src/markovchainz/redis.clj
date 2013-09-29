@@ -31,6 +31,6 @@
 
 (defn get-random-key []
   (let [key (rand-str 6)]
-   (if-not (redis/key? key)
+   (if-not (key? key)
      key
      (recur))))
