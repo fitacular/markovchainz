@@ -47,8 +47,11 @@
     font-family: Georgia;
   }
   .lyrics span {
-    background: #eee;
-    color: #000;
+    text-shadow: black 1px 1px 1px,
+                 black -1px 1px 1px,
+                 black 1px -1px 1px,
+                 black -1px -1px 1px;
+    color: #FFF;
     margin: 3px;
   }
   .permalink {
