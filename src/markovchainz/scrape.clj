@@ -320,11 +320,9 @@
          (first blob) #":")))
 
 (defn song-map [url]
-  (do
-    (prn url)
-    (let [lyrics (extract-words (get-lyrics-blob url))
-          title (extract-title (get-title url))]
-      {:title title :lyrics lyrics :url url})))
+  (let [lyrics (extract-words (get-lyrics-blob url))
+        title (extract-title (get-title url))]
+    {:title title :lyrics lyrics :url url}))
 
 (defn yuck []
   (song-map "http://rapgenius.com/2-chainz-yuck-lyrics"))
@@ -336,5 +334,5 @@
   (song-map "http://rapgenius.com/2-chainz-no-lie-lyrics"))
 
 (defn save-songs
-  ([urls] (map #(redis/add-to-set "songs" (song-map %)) urls))
+  ([urls] (pmap #(redis/add-to-set "songs" (song-map %)) urls))
   ([] (save-songs song-set)))
