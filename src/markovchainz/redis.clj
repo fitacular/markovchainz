@@ -21,3 +21,6 @@
 
 (defn rset [k v]
   (wcar* (car/set k v)))
+
+(defn rget [k]
+  (wcar* (car/get k)))
