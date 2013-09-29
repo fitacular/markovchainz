@@ -5,6 +5,7 @@
     [markovchainz.redis :as redis]
     [markovchainz.flickr :as flickr]
     [compojure.route :as route])
+  (:use [environ.core :only [env]])
   (:use compojure.core)
   (:use ring.adapter.jetty)
   (:use ring.middleware.reload)
@@ -118,7 +119,7 @@
     (wrap-stacktrace)))
 
 (defn boot []
-  (run-jetty #'app {:port 8080}))
+  (run-jetty #'app {:port (read-string (or (env :port) "80"))}))
 
 (defn -main []
   (boot))
