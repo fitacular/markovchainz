@@ -50,7 +50,15 @@
     text-shadow: black 1px 1px 1px,
                  black -1px 1px 1px,
                  black 1px -1px 1px,
-                 black -1px -1px 1px;
+                 black -1px -1px 1px,
+                 black 1px 1px 2px,
+                 black -1px 1px 2px,
+                 black 1px -1px 2px,
+                 black -1px -1px 2px,
+                 black 1.5px 1.5px 2px,
+                 black -1.5px 1.5px 2px,
+                 black 1.5px -1.5px 2px,
+                 black -1.5px -1.5px 2px;
     color: #FFF;
     margin: 3px;
   }
