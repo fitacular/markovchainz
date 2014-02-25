@@ -23,10 +23,9 @@
  "http://rapgenius.com/Rick-ross-911-remix-lyrics"
  "http://rapgenius.com/2-chainz-addicted-to-rubberbands-lyrics"
  "http://rapgenius.com/Game-ali-bomaye-lyrics"
- "http://rapgenius.com/Game-ali-bomaye-french-version-lyrics"
  "http://rapgenius.com/Trinidad-james-all-gold-everything-remix-lyrics"
  "http://rapgenius.com/Drake-all-me-lyrics"
- "http://rapgenius.com/Greekdagod-all-me-lyrics"
+ "http://rapgenius.com/Greekdagod-all-me-remix-lyrics"
  "http://rapgenius.com/Yungbrezzy-alot-of-diss-and-dat-lyrics"
  "http://rapgenius.com/Cyhi-the-prynce-a-town-remix-lyrics"
  "http://rapgenius.com/Tyga-bad-bitches-remix-lyrics"
@@ -39,11 +38,9 @@
  "http://rapgenius.com/2-chainz-bet-uncut-cypher-lyrics"
  "http://rapgenius.com/T-pain-big-man-lyrics"
  "http://rapgenius.com/2-chainz-birthday-song-lyrics"
- "http://rapgenius.com/2-chainz-birthday-song-french-version-lyrics"
  "http://rapgenius.com/2-chainz-black-unicorn-lyrics"
  "http://rapgenius.com/2-chainz-boo-lyrics"
  "http://rapgenius.com/Justin-bieber-boyfriend-remix-lyrics"
- "http://rapgenius.com/Kreayshawn-breakfast-lyrics"
  "http://rapgenius.com/Kreayshawn-breakfast-syrup-lyrics"
  "http://rapgenius.com/Major-lazer-bubble-butt-lyrics"
  "http://rapgenius.com/Ace-hood-bugatti-remix-lyrics"
@@ -61,7 +58,7 @@
  "http://rapgenius.com/Nelly-country-ass-nigga-lyrics"
  "http://rapgenius.com/2-chainz-cowboy-lyrics"
  "http://rapgenius.com/2-chainz-crack-lyrics"
- "http://rapgenius.com/Gift-crustacean-lyrics"
+ "http://rapgenius.com/The-gift-mattabatta-crustacean-lyrics"
  "http://rapgenius.com/Lil-wayne-days-and-days-lyrics"
  "http://rapgenius.com/Lil-wayne-days-and-days-french-version-lyrics"
  "http://rapgenius.com/Gucci-mane-dirty-cup-lyrics"
@@ -78,7 +75,6 @@
  "http://rapgenius.com/Hit-boy-fan-remix-lyrics"
  "http://rapgenius.com/2-chainz-feds-watching-lyrics"
  "http://rapgenius.com/Lil-wayne-feds-watching-lyrics"
- "http://rapgenius.com/2-chainz-feds-watching-eftw-edition-lyrics"
  "http://rapgenius.com/2-chainz-feeling-you-lyrics"
  "http://rapgenius.com/Bun-b-fire-lyrics"
  "http://rapgenius.com/Tls-fkin-problems-remix-lyrics"
@@ -90,7 +86,6 @@
  "http://rapgenius.com/Kevin-mccall-fucking-problems-remix-lyrics"
  "http://rapgenius.com/A-ap-rocky-fuckin-problems-lyrics"
  "http://rapgenius.com/Trey-songz-fuckin-problems-freestyle-lyrics"
- "http://rapgenius.com/A-ap-rocky-fuckin-problems-french-version-lyrics"
  "http://rapgenius.com/A-ap-rocky-fuckin-problems-remix-lyrics"
  "http://rapgenius.com/Planet-vi-fuck-you-too-lyrics"
  "http://rapgenius.com/2-chainz-fuk-da-roof-lyrics"
@@ -174,7 +169,7 @@
  "http://rapgenius.com/Stalley-party-heart-lyrics"
  "http://rapgenius.com/Bob-perfect-symmetry-lyrics"
  "http://rapgenius.com/2-chainz-pimp-c-back-lyrics"
- "http://rapgenius.com/2-chainz-pimps-lyrics"
+ "http://rapgenius.com/Big-krit-pimps-lyrics"
  "http://rapgenius.com/Travis-porter-pussy-real-good-lyrics"
  "http://rapgenius.com/Lil-wayne-real-as-they-come-lyrics"
  "http://rapgenius.com/Lil-wayne-rich-as-fuck-lyrics"
@@ -231,7 +226,6 @@
  "http://rapgenius.com/2-chainz-vi-agra-lyrics"
  "http://rapgenius.com/Ludacris-we-got-lyrics"
  "http://rapgenius.com/2-chainz-and-wiz-khalifa-we-own-it-fast-and-furious-lyrics"
- "http://rapgenius.com/2-chainz-we-own-it-french-version-lyrics"
  "http://rapgenius.com/Fabolous-when-i-feel-like-it-lyrics"
  "http://rapgenius.com/2-chainz-where-u-been-lyrics"
  "http://rapgenius.com/French-montana-whip-lyrics"
@@ -298,11 +292,15 @@
 (defn get-lyrics-blob
   [url]
   (:content (first (html/select
-                    (html-string-to-enlive (:body @(http/get url)))
+                    (html-string-to-enlive (:body @(http/get url {:max-redirects 10})))
                     [:.lyrics]))))
 
 (defn flatten-annotated-lyrics [blob]
-  (flatten (map #(if (map? %) (:content %) %) blob)))
+  (loop [b blob]
+    (let [lyrics (flatten (map #(if (map? %) (:content %) %) b))]
+      (if (= b lyrics)
+        lyrics
+        (recur lyrics)))))
 
 (defn extract-words [blob]
   (let [text (filter #(not (map? %)) (flatten-annotated-lyrics blob))
@@ -337,5 +335,5 @@
   (song-map "http://rapgenius.com/2-chainz-no-lie-lyrics"))
 
 (defn save-songs
-  ([urls] (pmap #(redis/add-to-set "songs" (song-map %)) urls))
+  ([urls] (doall (pmap #(redis/add-to-set "songs" (song-map %)) urls)))
   ([] (save-songs song-set)))
