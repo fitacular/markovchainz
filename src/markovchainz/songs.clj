@@ -9,4 +9,4 @@
         #(str/lower-case (str/replace % #"[(\")]" "")) lines)))
 
 (defn song-stream []
-  (get-stream (flatten (map :lyrics (redis/get-set "songs")))))
+  (get-stream (filter identity (flatten (map :lyrics (redis/get-set "songs"))))))
