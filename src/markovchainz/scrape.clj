@@ -314,15 +314,16 @@
 (defn get-title [url]
   (:content (first (html/select
                     (html-string-to-enlive (:body @(http/get url)))
-                    [:.label.edit_song_description :> :i]))))
+                    [:.text_title]))))
 
-(defn extract-title [blob]
-  (last (clojure.string/split
-         (first blob) #":")))
+;(defn extract-title [blob]
+;  (last (str/split
+;         (first blob) #":")))
 
 (defn song-map [url]
   (let [lyrics (extract-words (get-lyrics-blob url))
-        title (extract-title (get-title url))]
+        ;title (extract-title (get-title url))]
+        title (get-title url)]
     {:title title :lyrics lyrics :url url}))
 
 (defn yuck []
