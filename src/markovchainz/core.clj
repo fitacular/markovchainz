@@ -9,7 +9,8 @@
   (:use compojure.core)
   (:use ring.adapter.jetty)
   (:use ring.middleware.reload)
-  (:use ring.middleware.stacktrace))
+  (:use ring.middleware.stacktrace)
+  (:gen-class))
 
 
 (defn get-body []
@@ -78,7 +79,7 @@
   <tr><td style='padding-right: 25px;'><h1>Markov 2 Chainz</h1></td>
   <td><p>Lyrics are generated dynamically using a <a href='https://en.wikipedia.org/wiki/Markov_chain'>Markov chain</a> from a corpus of songs from <a href='https://twitter.com/2chainz'>Mr. Chainz</a>'s extensive repertoire.</p>
   <p>Built with Clojure, Redis, Flickr, Rapgenius, and <a href='http://clojurecup.com/app.html?app=2chainz'>more</a>.<p>
-  <p>A Clojure Cup entry by <a href='https://twitter.com/dsri'>@dsri</a> and <a href='https://twitter.com/skiaec04'>@skiaec04</a>.</p>
+  <p>A Clojure Cup 2013 entry by <a href='https://twitter.com/dsri'>@dsri</a> and <a href='https://twitter.com/skiaec04'>@skiaec04</a>.</p>
   </td></tr></table>
   </div>
   "))

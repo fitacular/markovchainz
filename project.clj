@@ -11,4 +11,5 @@
                  [http-kit "2.1.10"]
                  [enlive "1.1.4"]
                  [cheshire "5.2.0"]
-                 [environ "0.4.0"]])
+                 [environ "0.4.0"]]
+  :profiles {:uberjar {:aot [markovchainz.core]}})
