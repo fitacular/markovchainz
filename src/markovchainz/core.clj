@@ -115,8 +115,8 @@
     {:status 404, :body "<!DOCTYPE html>\n<html><h2>Not found</h2></html>\n"}))
 
 (def app
-  (-> (var handler)
-    (wrap-reload '(ring-tutorial.core))
+  (-> #'handler
+    (wrap-reload '(markovchainz.core))
     (wrap-stacktrace)))
 
 (defn boot []
