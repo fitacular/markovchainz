@@ -11,7 +11,8 @@
                  [http-kit "2.1.10"]
                  [enlive "1.1.4"]
                  [cheshire "5.2.0"]
-                 [environ "0.4.0"]]
+                 [environ "0.4.0"]
+                 [twitter-api "0.7.5"]]
   :profiles {:uberjar {:aot [markovchainz.core]}}
   :plugins [[lein-ring "0.8.11"]]
   :ring {:handler markovchainz.core/handler})
